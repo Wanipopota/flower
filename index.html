@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor Amarilla Personalizada</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #fffde7, #fff9c4);
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #f9a825;
+            margin-bottom: 20px;
+        }
+
+        #nameForm {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ffd54f;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: calc(100% - 24px);
+            max-width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffd54f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffca28;
+        }
+
+        #flowerContainer {
+            display: none;
+        }
+
+        .flower-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            max-width: 300px;
+            max-height: 300px;
+            margin: 0 auto 40px;
+        }
+
+        .flower {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: rotate 60s linear infinite;
+        }
+
+        .center {
+            width: 33.33%;
+            height: 33.33%;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+        }
+
+        .petal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 15%;
+            background: linear-gradient(to bottom, #FFF700 0%, #FFD700 100%);
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+            transform-origin: 0 50%;
+        }
+
+        .small-petal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 26.67%;
+            height: 10%;
+            background: linear-gradient(to bottom, #FFF700 0%, #FFD700 100%);
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+            transform-origin: 0 50%;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #message {
+            font-size: 18px;
+            color: #f57f17;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .flower-wrapper {
+                max-width: 240px;
+                max-height: 240px;
+                margin-bottom: 30px;
+            }
+
+            input[type="text"], button {
+                width: 100%;
+                margin-bottom: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Alex te regala esta Flor Amarilla Personalizada</h1>
+        <form id="nameForm">
+            <input type="text" id="nameInput" placeholder="Ingresa tu nombre" required aria-label="Nombre">
+            <button type="submit">Crear Flor</button>
+        </form>
+        <div id="flowerContainer">
+            <div class="flower-wrapper">
+                <div class="flower" aria-label="Flor amarilla animada">
+                    <div class="center"></div>
+                    <!-- Pétalos grandes -->
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <!-- Pétalos pequeños -->
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                    <div class="small-petal"></div>
+                </div>
+            </div>
+            <div id="message"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameForm = document.getElementById('nameForm');
+            const nameInput = document.getElementById('nameInput');
+            const flowerContainer = document.getElementById('flowerContainer');
+            const message = document.getElementById('message');
+
+            nameForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = nameInput.value.trim();
+                if (name) {
+                    showFlower(name);
+                }
+            });
+
+            function showFlower(name) {
+                nameForm.style.display = 'none';
+                flowerContainer.style.display = 'block';
+                message.innerHTML = `Esta flor es para ti ${name},<br>que tu día florezca con alegría y belleza,<br>como esta flor amarilla.`;
+
+                // Posicionar y animar los pétalos grandes
+                const petals = document.querySelectorAll('.petal');
+                petals.forEach((petal, index) => {
+                    const angle = (index * 22.5) * (Math.PI / 180);
+                    petal.style.transform = `rotate(${angle}rad) translateX(30%)`;
+                    petal.style.animation = `sway${index} 5s ease-in-out infinite alternate`;
+                    document.styleSheets[0].insertRule(
+                        `@keyframes sway${index} {
+                            to { transform: rotate(${angle}rad) translateX(30%) rotate(5deg); }
+                        }`,
+                        document.styleSheets[0].cssRules.length
+                    );
+                });
+
+                // Posicionar y animar los pétalos pequeños
+                const smallPetals = document.querySelectorAll('.small-petal');
+                smallPetals.forEach((petal, index) => {
+                    const angle = ((index * 45) + 22.5) * (Math.PI / 180);
+                    petal.style.transform = `rotate(${angle}rad) translateX(20%)`;
+                    petal.style.animation = `smallSway${index} 4s ease-in-out infinite alternate`;
+                    document.styleSheets[0].insertRule(
+                        `@keyframes smallSway${index} {
+                            to { transform: rotate(${angle}rad) translateX(20%) rotate(3deg); }
+                        }`,
+                        document.styleSheets[0].cssRules.length
+                    );
+                });
+            }
+        });
+    </script>
+</body>
+</html>
